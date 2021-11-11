@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
+import '../css-files/search.css';
 
 class Search extends Component {
   constructor() {
@@ -32,6 +33,7 @@ class Search extends Component {
               data-testid="search-artist-input"
               type="text"
               placeholder="Nome do Artista"
+              className="form-input"
               name="artistName"
               value={ artistName }
               onChange={ handleChange }
@@ -40,6 +42,7 @@ class Search extends Component {
           </div>
           <button
             data-testid="search-artist-button"
+            className="btn blue-btn"
             type="button"
             disabled={ isClickable }
           >

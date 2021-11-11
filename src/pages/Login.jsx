@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { createUser } from '../services/userAPI';
+import Logo from '../logo.svg';
 import LoadingComp from './LoadingComp';
+import '../css-files/login.css';
 
 class Login extends Component {
   constructor() {
@@ -43,11 +45,13 @@ class Login extends Component {
     const canClick = userName.length < minLength;
 
     const loginPage = (
-      <div data-testid="page-login">
+      <div data-testid="page-login" className="login">
+        <img src={ Logo } alt="Logo" />
         <form className="login-form">
           <input
             data-testid="login-name-input"
             placeholder="Nome"
+            className="form-input"
             type="text"
             name="userName"
             value={ userName }
@@ -55,6 +59,7 @@ class Login extends Component {
           />
           <button
             data-testid="login-submit-button"
+            className="btn blue-btn"
             type="button"
             disabled={ canClick }
             onClick={ joinClick }

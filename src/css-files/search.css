@@ -1,0 +1,26 @@
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0;
+}
+
+.search-input {
+  position: relative;
+  width: 40%;
+}
+
+.search-input input {
+  width: 97%;
+}
+
+.search-input i {
+  color: #7e7e7e;
+  margin-right: 5px;
+  position: absolute;
+  right: 0;
+  top: 25%;
+}
+
+.search-container button {
+  margin: 0 1rem;
+}

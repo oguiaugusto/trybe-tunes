@@ -44,6 +44,10 @@
   color: white;
 }
 
+.header-links {
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+}
+
 .header-links ul {
   display: flex;
   justify-content: space-around;
