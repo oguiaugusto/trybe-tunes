@@ -1,0 +1,45 @@
+.header {
+  align-items: center;
+  background-color: #023031;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
+}
+
+.header img {
+  margin: 0 0 10px;
+  margin-top: -10px;
+  width: 80px;
+}
+
+.header .user-header {
+  align-items: center;
+  background-color: white;
+  border-radius: 2rem;
+  display: flex;
+  padding: 0.2rem;
+  width: max-content;
+}
+
+.user-header .user-name {
+  margin: 0 15px;
+}
+
+.user-header .user-name p {
+  margin: 0;
+}
+
+.user-header .user-icon {
+  align-items: center;
+  background-color: #2fc18c;
+  border-radius: 50%;
+  display: flex;
+  height: 20px;
+  justify-content: center;
+  padding: 5px;
+  width: 20px;
+}
+
+.user-header i {
+  color: white;
+}
