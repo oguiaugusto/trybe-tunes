@@ -1,4 +1,4 @@
-.header {
+.header .header-top {
   align-items: center;
   background-color: #023031;
   display: flex;
@@ -41,5 +41,33 @@
 }
 
 .user-header i {
+  color: white;
+}
+
+.header-links ul {
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+}
+
+.header-links ul li {
+  flex-basis: 35%;
+  list-style-type: none;
+  text-align: center;
+}
+
+.header-links ul li a {
+  background-color: #f0f2f5;
+  color: #023031;
+  display: block;
+  font-size: large;
+  font-weight: 700;
+  padding: 1rem 0;
+  text-decoration: none;
+}
+
+.header-links ul li a:hover {
+  background-color: #036b52;
   color: white;
 }
