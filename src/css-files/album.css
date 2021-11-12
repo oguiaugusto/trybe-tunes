@@ -1,0 +1,63 @@
+.album-content {
+  display: flex;
+  justify-content: space-around;
+  margin: 3rem 0;
+}
+
+.album-container {
+  display: flex;
+  justify-content: center;
+  margin: 1.2rem 0;
+  width: 50%;
+}
+
+.album-info {
+  width: 70%;
+}
+
+.album-info img {
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+  width: 100%;
+}
+
+.album-info .album-name {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 1rem 0;
+  margin-left: 0.2rem;
+}
+
+.album-info .album-artist-name {
+  font-size: 1.5rem;
+  margin: 0;
+  margin-left: 0.2rem;
+}
+
+.songs-container {
+  align-items: center;
+  display: flex;
+  flex-basis: 50%;
+  flex-direction: column;
+  margin: 0 3rem;
+}
+
+.song {
+  display: grid;
+  grid-template-columns: 5% 40% 55%;
+}
+
+.songs hr {
+  background-color: #e9e9e9;
+}
+
+.song-title-container {
+  display: flex;
+}
+
+.song-title {
+  margin: auto 2rem;
+}
+
+.song audio {
+  width: 25vw;
+}
