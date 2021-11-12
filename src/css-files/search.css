@@ -17,10 +17,50 @@
   color: #7e7e7e;
   margin-right: 5px;
   position: absolute;
-  right: 0;
-  top: 25%;
+  right: 5px;
+  top: 10px;
 }
 
 .search-container button {
   margin: 0 1rem;
+}
+
+.page-search .loading p {
+  font-size: 3rem;
+}
+
+
+.search-results {
+  margin: auto;
+  width: 80%;
+}
+
+.search-results-title {
+  font-size: 1.5rem;
+}
+
+.search-results-albums {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.search-results-albums .result-album {
+  flex-basis: 20rem;
+  margin: 2rem 3rem;
+}
+
+.result-album img {
+  width: 100%;
+}
+
+.result-album-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 120px;
+}
+
+.result-album-title {
+  font-weight: 600;
 }
