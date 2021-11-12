@@ -31,7 +31,9 @@ class Header extends Component {
     return (
       <header className="header" data-testid="header-component">
         <div className="header-top">
-          <img src={ Logo } alt="Logo" />
+          <Link to="/">
+            <img src={ Logo } alt="Logo" />
+          </Link>
           <div className="user-header">
             <div className="user-icon">
               <i className="fas fa-circle fa-user" />

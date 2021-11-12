@@ -112,10 +112,12 @@ class Search extends Component {
     );
 
     return (
-      <div data-testid="page-search">
+      <div data-testid="page-search" className="page-search">
         <Header />
-        {loading ? <LoadingComp /> : searchContainer}
-        {hasResults && showingResults}
+        <div className="search-content">
+          {loading ? <LoadingComp /> : searchContainer}
+          {hasResults && showingResults}
+        </div>
       </div>
     );
   }
