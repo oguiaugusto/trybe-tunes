@@ -27,20 +27,22 @@ class Search extends Component {
     this.setState({ [name]: value });
   }
 
-  searchArtist() {
-    const { artistName } = this.state;
-    this.setState({ loading: true });
-    searchAlbumsAPI(artistName)
-      .then((albums) => {
-        this.setState({
-          loading: false,
-          hasResults: true,
-          shownName: artistName,
-          albums,
-        }, () => {
-          this.setState({ artistName: '' });
+  searchArtist(e) {
+    if (!e.key || e.key === 'Enter') {
+      const { artistName } = this.state;
+      this.setState({ loading: true });
+      searchAlbumsAPI(artistName)
+        .then((albums) => {
+          this.setState({
+            loading: false,
+            hasResults: true,
+            shownName: artistName,
+            albums,
+          }, () => {
+            this.setState({ artistName: '' });
+          });
         });
-      });
+    }
   }
 
   mapAlbums(albums) {
@@ -82,6 +84,7 @@ class Search extends Component {
             name="artistName"
             value={ artistName }
             onChange={ handleChange }
+            onKeyPress={ searchArtist }
           />
           <i className="fas fa-search" />
         </div>
