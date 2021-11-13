@@ -8,7 +8,6 @@
   display: flex;
   justify-content: center;
   margin: 1.2rem 0;
-  width: 50%;
 }
 
 .album-info {
@@ -17,49 +16,55 @@
 
 .album-info img {
   box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
-  width: 100%;
+  width: 80%;
 }
 
 .album-info .album-name {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 600;
   margin: 1rem 0;
   margin-left: 0.2rem;
 }
 
 .album-info .album-artist-name {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin: 0;
   margin-left: 0.2rem;
 }
 
-.songs-container {
+.album-content .songs-container {
   align-items: center;
   display: flex;
-  flex-basis: 50%;
+  flex-basis: 70%;
   flex-direction: column;
   margin: 0 3rem;
 }
 
-.song {
+.album-content .song {
   align-items: center;
   display: grid;
   grid-template-columns: 5% 40% 50% 5%;
 }
 
-.songs hr {
-  background-color: #e9e9e9;
+.album-content .songs hr {
+  margin: 0.8rem 0;
 }
 
-.song-title-container {
+.album-content .song-title-container {
   display: flex;
 }
 
-.song-title {
+.album-content .song-title {
+  margin: auto 2rem;
+  min-width: 200px;
+}
+
+.album-content .song-number {
   margin: auto 2rem;
 }
 
-.song audio {
+.album-content .song audio {
+  height: 100%;
   width: 22vw;
 }
 
@@ -67,8 +72,14 @@
   font-size: 1rem;
 }
 
-.favorite-input {
+.song label {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: xx-small;
+}
+
+.song .favorite-input {
   justify-self: flex-end;
-  margin: 0 2rem;
-  transform: scale(1.2) rotate(45deg);
+  margin: 0.5rem 1rem;
 }

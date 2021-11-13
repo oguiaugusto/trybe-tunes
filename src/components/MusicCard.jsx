@@ -40,6 +40,8 @@ class MusicCard extends Component {
         removeSong(songObj)
           .then(() => {
             this.setState({ loading: false });
+            const { removedSong } = this.props;
+            removedSong();
           });
       });
     }
@@ -54,9 +56,18 @@ class MusicCard extends Component {
   }
 
   render() {
-    const { trackName, trackNumber, previewUrl, trackId } = this.props;
     const { songFavorite, loading, checked } = this.state;
     const { handleChange } = this;
+
+    const {
+      trackName,
+      trackNumber,
+      previewUrl,
+      trackId,
+      favoriteCard,
+      artworkUrl100,
+      collectionName,
+    } = this.props;
 
     const audio = (
       <audio
@@ -70,20 +81,31 @@ class MusicCard extends Component {
       </audio>
     );
 
+    const titleNumber = (
+      <p className="song-number">{ `${trackNumber}` }</p>
+    );
+
+    const albumImg = (
+      <img className="album-cover" src={ artworkUrl100 } alt={ collectionName } />
+    );
+
     return (
       <div className="song">
-        <p className="song-title">{ `${trackNumber}` }</p>
+        {!favoriteCard ? titleNumber : albumImg}
         <p className="song-title">{ trackName }</p>
         {loading ? <LoadingComp /> : audio}
-        <input
-          data-testid={ `checkbox-music-${trackId}` }
-          className="favorite-input"
-          type="checkbox"
-          id="favoriteMusic"
-          checked={ checked }
-          value={ songFavorite }
-          onChange={ handleChange }
-        />
+        <label htmlFor="favoriteMusic">
+          Favorita
+          <input
+            data-testid={ `checkbox-music-${trackId}` }
+            className="favorite-input"
+            type="checkbox"
+            id="favoriteMusic"
+            checked={ checked }
+            value={ songFavorite }
+            onChange={ handleChange }
+          />
+        </label>
       </div>
     );
   }
@@ -93,12 +115,22 @@ MusicCard.propTypes = {
   trackName: PropTypes.string.isRequired,
   previewUrl: PropTypes.string.isRequired,
   trackNumber: PropTypes.number,
-  trackId: PropTypes.number.isRequired,
+  trackId: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]).isRequired,
   songObj: PropTypes.objectOf(PropTypes.any).isRequired,
+  favoriteCard: PropTypes.bool.isRequired,
+  artworkUrl100: PropTypes.string,
+  collectionName: PropTypes.string,
+  removedSong: PropTypes.func,
 };
 
 MusicCard.defaultProps = {
   trackNumber: 0,
+  artworkUrl100: '',
+  collectionName: '',
+  removedSong: () => {},
 };
 
 export default MusicCard;

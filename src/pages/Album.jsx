@@ -62,25 +62,35 @@ class Album extends Component {
           <div className="songs-container">
             <div className="songs">
               <hr />
-              {songs.map((songObj, index) => {
-                const { trackName, trackNumber, previewUrl, trackId } = songObj;
+              {songs.filter((songObj) => songObj.collectionType !== 'Album')
+                .sort((a, b) => a.trackNumber - b.trackNumber)
+                .map((songObj) => {
+                  const {
+                    trackName,
+                    trackNumber,
+                    previewUrl,
+                    trackId,
+                    artworkUrl100,
+                    collectionName,
+                  } = songObj;
+                  const favoriteCard = false;
 
-                if (index !== 0) {
                   return (
                     <div key={ trackId } className="song-container">
                       <MusicCard
+                        favoriteCard={ favoriteCard }
                         songObj={ songObj }
                         trackName={ trackName }
                         trackNumber={ trackNumber }
                         previewUrl={ previewUrl }
                         trackId={ trackId }
+                        artworkUrl100={ artworkUrl100 }
+                        collectionName={ collectionName }
                       />
                       <hr />
                     </div>
                   );
-                }
-                return '';
-              })}
+                })}
             </div>
           </div>
         </div>

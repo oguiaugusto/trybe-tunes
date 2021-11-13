@@ -17,7 +17,7 @@
   color: #7e7e7e;
   margin-right: 5px;
   position: absolute;
-  right: 5px;
+  right: 10px;
   top: 10px;
 }
 
@@ -44,7 +44,7 @@
   background-color: #f1f1f1;
   border-radius: 1rem;
   box-shadow: rgba(0, 0, 0, 0.15) 0 2px 8px;
-  flex-basis: 20rem;
+  flex-basis: 15rem;
   margin: 2rem 3rem;
 }
 
