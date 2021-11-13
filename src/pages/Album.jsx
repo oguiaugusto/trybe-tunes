@@ -62,14 +62,18 @@ class Album extends Component {
           <div className="songs-container">
             <div className="songs">
               <hr />
-              {songs.map(({ trackName, trackNumber, previewUrl, trackId }, index) => {
+              {songs.map((songObj, index) => {
+                const { trackName, trackNumber, previewUrl, trackId } = songObj;
+
                 if (index !== 0) {
                   return (
                     <div key={ trackId } className="song-container">
                       <MusicCard
+                        songObj={ songObj }
                         trackName={ trackName }
                         trackNumber={ trackNumber }
                         previewUrl={ previewUrl }
+                        trackId={ trackId }
                       />
                       <hr />
                     </div>
