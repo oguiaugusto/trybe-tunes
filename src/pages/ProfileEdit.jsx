@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import { getUser, updateUser } from '../services/userAPI';
 import userDefaultImg from '../userDefaultImg.png';
 import LoadingComp from './LoadingComp';
+import '../css-files/profile.css';
 
 class ProfileEdit extends Component {
   constructor() {
@@ -108,11 +109,17 @@ class ProfileEdit extends Component {
       buttonDisabled,
     } = this.state;
 
+    let profImg = userDefaultImg;
+
+    if (image !== '') profImg = image;
+
     const userProfileEdit = (
-      <div className="profile-edit-container">
+      <div className="profile-container">
         <form>
-          <div className="img-row">
-            <img src={ userDefaultImg } alt="Default user icon" />
+          <div className="img-row profile-row">
+            <div className="img-container">
+              <img src={ profImg } alt="Default user icon" />
+            </div>
             <input
               data-testid="edit-input-image"
               placeholder="Insira um Link"
@@ -123,8 +130,8 @@ class ProfileEdit extends Component {
               onChange={ handleChange }
             />
           </div>
-          <div className="name-row">
-            <p className="row-title">Nome</p>
+          <div className="name-row profile-row">
+            <p className="row-title row-title-sub">Nome</p>
             <p className="row-subtitle">
               Fique a vontade para usar seu nome social
             </p>
@@ -138,8 +145,8 @@ class ProfileEdit extends Component {
               onChange={ handleChange }
             />
           </div>
-          <div className="email-row">
-            <p className="row-title">Email</p>
+          <div className="email-row profile-row">
+            <p className="row-title row-title-sub">Email</p>
             <p className="row-subtitle">
               Escolha um email que consulte diariamente
             </p>
@@ -153,7 +160,7 @@ class ProfileEdit extends Component {
               onChange={ handleChange }
             />
           </div>
-          <div className="description-row">
+          <div className="description-row profile-row">
             <p className="row-title">Descrição</p>
             <textarea
               data-testid="edit-input-description"
@@ -183,7 +190,7 @@ class ProfileEdit extends Component {
     return (
       <div data-testid="page-profile-edit">
         <Header />
-        <div className="profile-edit-content">
+        <div className="profile-content">
           {loading ? <LoadingComp /> : userProfileEdit}
           {saved && <Redirect to="/profile" />}
         </div>
