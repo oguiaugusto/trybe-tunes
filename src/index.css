@@ -55,3 +55,8 @@ code {
 .blue-btn:active {
   background-color: #203283;
 }
+
+.blue-btn:disabled {
+  color: rgb(194, 194, 194);
+  background-color: #7e8bc4;
+}
