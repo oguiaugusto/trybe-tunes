@@ -83,3 +83,18 @@
   justify-self: flex-end;
   margin: 0.5rem 1rem;
 }
+
+@media screen and ( min-width : 1824px ) {
+
+  .songs {
+    width: 100%;
+  }
+
+  .album-content .song audio {
+    width: 29vw;
+  }
+
+  .album-content .song {
+    grid-template-columns: 2% 38% 55% 5%;
+  }
+}
