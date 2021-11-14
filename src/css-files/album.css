@@ -95,6 +95,6 @@
   }
 
   .album-content .song {
-    grid-template-columns: 2% 38% 55% 5%;
+    grid-template-columns: 5% 35% 55% 5%;
   }
 }
