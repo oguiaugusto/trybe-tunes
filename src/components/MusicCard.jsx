@@ -94,13 +94,13 @@ class MusicCard extends Component {
         {!favoriteCard ? titleNumber : albumImg}
         <p className="song-title">{ trackName }</p>
         {loading ? <LoadingComp /> : audio}
-        <label htmlFor="favoriteMusic">
+        <label htmlFor={ `favoriteMusic-${trackId}` }>
           Favorita
           <input
             data-testid={ `checkbox-music-${trackId}` }
             className="favorite-input"
             type="checkbox"
-            id="favoriteMusic"
+            id={ `favoriteMusic-${trackId}` }
             checked={ checked }
             value={ songFavorite }
             onChange={ handleChange }
@@ -112,13 +112,13 @@ class MusicCard extends Component {
 }
 
 MusicCard.propTypes = {
-  trackName: PropTypes.string.isRequired,
-  previewUrl: PropTypes.string.isRequired,
+  trackName: PropTypes.string,
+  previewUrl: PropTypes.string,
   trackNumber: PropTypes.number,
   trackId: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
-  ]).isRequired,
+  ]),
   songObj: PropTypes.objectOf(PropTypes.any).isRequired,
   favoriteCard: PropTypes.bool.isRequired,
   artworkUrl100: PropTypes.string,
@@ -127,6 +127,9 @@ MusicCard.propTypes = {
 };
 
 MusicCard.defaultProps = {
+  trackName: '',
+  previewUrl: '',
+  trackId: 0,
   trackNumber: 0,
   artworkUrl100: '',
   collectionName: '',
