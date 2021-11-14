@@ -22,10 +22,6 @@ class Favorites extends Component {
     this.setFavoriteSongs();
   }
 
-  componentDidUpdate() {
-    this.setFavoriteSongs();
-  }
-
   setFavoriteSongs() {
     getFavoriteSongs()
       .then((songs) => {
@@ -37,7 +33,7 @@ class Favorites extends Component {
 
   removedSong() {
     this.setState({ loading: true }, () => {
-      this.forceUpdate();
+      this.setFavoriteSongs();
     });
   }
 
