@@ -18,14 +18,11 @@ class ProfileEdit extends Component {
       email: '',
       image: '',
       description: '',
-
-      buttonDisabled: true,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.onSaveClick = this.onSaveClick.bind(this);
     this.setUser = this.setUser.bind(this);
-    this.changeButton = this.changeButton.bind(this);
     this.checkFields = this.checkFields.bind(this);
     this.validateEmail = this.validateEmail.bind(this);
   }
@@ -67,25 +64,18 @@ class ProfileEdit extends Component {
     });
   }
 
-  changeButton(change) {
-    this.setState({ buttonDisabled: change });
-  }
-
   checkFields() {
     const { name, email, image, description } = this.state;
 
-    const validations = [
-      name === '',
-      !this.validateEmail(email),
-      image === '',
-      description === '',
-    ];
+    const validations = (
+      !name
+      || !this.validateEmail(email)
+      || !image
+      || !description
+    );
+    /* Source: https://github.com/tryber/sd-016-a-project-trybetunes/pull/61/commits/91b9483b2aa98d5358bc1f6bebf2344fea4c5200 */
 
-    if (!validations.every((validation) => validation === false)) {
-      this.changeButton(true);
-    } else {
-      this.changeButton(false);
-    }
+    return validations;
   }
 
   validateEmail(email) {
@@ -106,7 +96,6 @@ class ProfileEdit extends Component {
       email,
       image,
       description,
-      buttonDisabled,
     } = this.state;
 
     let profImg = userDefaultImg;
@@ -177,7 +166,7 @@ class ProfileEdit extends Component {
               data-testid="edit-button-save"
               type="button"
               className="btn blue-btn"
-              disabled={ buttonDisabled }
+              disabled={ this.checkFields() }
               onClick={ onSaveClick }
             >
               Salvar
