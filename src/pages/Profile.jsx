@@ -51,7 +51,7 @@ function Profile() {
         <p className="row-content">{ user.email }</p>
       </div>
       <div className="profile-row mx-2">
-        <p className="row-title">Descrição</p>
+        <p className="row-title">Description</p>
         <p className="row-content">{ user.description }</p>
       </div>
     </ProfileContainer>
