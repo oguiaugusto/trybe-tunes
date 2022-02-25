@@ -28,37 +28,43 @@ function Login() {
     });
   };
 
-  return loading ? (
-    <Loader />
-  ) : (
+  return (
     <div data-testid="page-login" className="login">
-      <FilteredLogo>
-        <img src={ Logo } alt="Logo" className="white" />
-        <img src={ Logo } alt="Logo" />
-      </FilteredLogo>
-      <Form className="login-form d-flex flex-column">
-        <Form.Group>
-          <Form.Control
-            data-testid="login-name-input"
-            placeholder="Name"
-            className="mb-3 mt-0"
-            type="text"
-            name="username"
-            value={ username }
-            onChange={ ({ target: { value } }) => setUsername(value) }
-          />
-        </Form.Group>
-        <Button
-          variant="outline-light"
-          data-testid="login-submit-button"
-          className="mt-1"
-          type="button"
-          disabled={ username.length < THREE }
-          onClick={ joinClick }
-        >
-          Entrar
-        </Button>
-      </Form>
+      {
+        loading ? (
+          <Loader />
+        ) : (
+          <>
+            <FilteredLogo>
+              <img src={ Logo } alt="Logo" className="white" />
+              <img src={ Logo } alt="Logo" />
+            </FilteredLogo>
+            <Form className="login-form d-flex flex-column">
+              <Form.Group>
+                <Form.Control
+                  data-testid="login-name-input"
+                  placeholder="Name"
+                  className="mb-3 mt-0"
+                  type="text"
+                  name="username"
+                  value={ username }
+                  onChange={ ({ target: { value } }) => setUsername(value) }
+                />
+              </Form.Group>
+              <Button
+                variant="outline-light"
+                data-testid="login-submit-button"
+                className="mt-1"
+                type="button"
+                disabled={ username.length < THREE }
+                onClick={ joinClick }
+              >
+                Entrar
+              </Button>
+            </Form>
+          </>
+        )
+      }
     </div>
   );
 }

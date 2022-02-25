@@ -1,69 +1,18 @@
+.page-search {
+  color: #eee;
+}
+
 .search-container {
   display: flex;
   justify-content: center;
-  margin: 3rem 0;
 }
 
-.search-input {
-  position: relative;
-  width: 40%;
-}
-
-.search-input input {
-  width: 97%;
-}
-
-.search-input i {
-  color: #7e7e7e;
-  margin-right: 5px;
-  position: absolute;
-  right: 3%;
-  top: 25%;
-}
-
-.search-container button {
-  margin: 0 1rem;
-}
-
-.search-results {
-  margin: auto;
-  width: 80%;
-}
-
-.search-results-title {
-  font-size: 1.5rem;
+.loader-container .loader {
+  margin-top: 5rem;
 }
 
 .search-results-albums {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-}
-
-.search-results-albums .result-album {
-  background-color: #f1f1f1;
-  border-radius: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.15) 0 2px 8px;
-  flex-basis: 15rem;
-  margin: 2rem 3rem;
-}
-
-.search-results-albums .result-album:hover {
-  box-shadow: rgba(17, 0, 170, 0.25) 0 2px 8px;
-}
-
-.search-results-albums .result-album img {
-  width: 100%;
-}
-
-.result-album .result-album-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 0 0.5rem;
-  min-height: 120px;
-}
-
-.result-album-info .result-album-title {
-  font-weight: 600;
 }

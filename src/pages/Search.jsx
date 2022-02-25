@@ -1,129 +1,92 @@
-import React, { Component } from 'react';
+/* eslint-disable import/no-cycle */
+import React, { useEffect, useState } from 'react';
+import { InputGroup, Form, Button } from 'react-bootstrap';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
-import Header from '../components/Header';
-import AlbumResult from '../components/AlbumResult';
-import LoadingComp from './LoadingComp';
+import { Header, Loader, AlbumCard } from '../components';
+import { SearchField } from '../components/styled';
 import '../css-files/search.css';
 
-class Search extends Component {
-  constructor() {
-    super();
+const TWO = 2;
 
-    this.state = {
-      artistName: '',
-      loading: false,
-      hasResults: false,
-      shownName: '',
+function Search() {
+  const [artistName, setArtistName] = useState('');
+  const [resultsFor, setResultsFor] = useState('');
+  const [albums, setAlbums] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [haveResults, setHaveResults] = useState(false);
 
-      albums: [],
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.searchArtist = this.searchArtist.bind(this);
-    this.mapAlbums = this.mapAlbums.bind(this);
-  }
-
-  handleChange({ target: { name, value } }) {
-    this.setState({ [name]: value });
-  }
-
-  searchArtist(e) {
-    if (!e.key || e.key === 'Enter') {
-      const { artistName } = this.state;
-      this.setState({ loading: true });
-      searchAlbumsAPI(artistName)
-        .then((albums) => {
-          this.setState({
-            loading: false,
-            hasResults: true,
-            shownName: artistName,
-            albums,
-          }, () => {
-            this.setState({ artistName: '' });
-          });
-        });
+  useEffect(() => {
+    if (artistName !== '') {
+      setLoading(true);
+      searchAlbumsAPI(resultsFor).then((r) => {
+        setAlbums(r);
+        setLoading(false);
+        setHaveResults(true);
+        setArtistName('');
+      });
     }
-  }
+  }, [resultsFor]);
 
-  mapAlbums(albums) {
-    return albums.map((album) => {
-      const {
-        artistName: aName,
-        collectionName,
-        collectionId,
-        artworkUrl100,
-      } = album;
+  const searchArtist = (e) => {
+    if (!e.key || e.key === 'Enter') setResultsFor(artistName);
+  };
 
-      return (
-        <AlbumResult
-          key={ collectionId }
-          id={ collectionId }
-          artistName={ aName }
-          imageSourceSmall={ artworkUrl100 }
-          albumName={ collectionName }
-        />
-      );
-    });
-  }
-
-  render() {
-    const { handleChange, searchArtist, mapAlbums } = this;
-    const { artistName, loading, hasResults, shownName, albums } = this.state;
-
-    const minLength = 2;
-    const isClickable = artistName.length < minLength;
-
-    const searchContainer = (
-      <div className="search-container">
-        <div className="search-input">
-          <input
+  const renderSearchContainer = () => (
+    <div className="search-container">
+      <SearchField>
+        <InputGroup className="d-flex my-4 justify-content-center">
+          <Form.Control
             data-testid="search-artist-input"
             type="text"
-            placeholder="Nome do Artista"
-            className="form-input"
-            name="artistName"
+            placeholder="Artist Name"
             value={ artistName }
-            onChange={ handleChange }
+            onChange={ ({ target: { value } }) => setArtistName(value) }
             onKeyPress={ searchArtist }
           />
-          <i className="fas fa-search" />
-        </div>
-        <button
-          data-testid="search-artist-button"
-          className="btn blue-btn"
-          type="button"
-          onClick={ searchArtist }
-          disabled={ isClickable }
-        >
-          Search
-        </button>
-      </div>
-    );
+          <Button
+            data-testid="search-artist-button"
+            variant="info"
+            onClick={ searchArtist }
+            disabled={ artistName.length < TWO }
+          >
+            <i className="fas fa-search" />
+          </Button>
+        </InputGroup>
+      </SearchField>
+    </div>
+  );
 
-    const noAlbumFound = <p className="no-album">Nenhum álbum foi encontrado</p>;
-
-    const showingResults = (
-      <div className="search-results">
-        <p className="search-results-title">
-          Resultado de álbuns de:
-          { ` ${shownName}` }
-        </p>
-        <div className="search-results-albums">
-          {albums.length === 0 ? noAlbumFound : mapAlbums(albums)}
+  const renderResults = () => {
+    if (haveResults) {
+      return (
+        <div className="search-results">
+          <p className="text-center m-0">
+            Showing results for:
+            {` ${resultsFor}`}
+          </p>
+          <div className="search-results-albums">
+            {
+              albums.length === 0 ? (
+                <p className="no-album">No album was found</p>
+              ) : (
+                albums.map((album) => (
+                  <AlbumCard key={ album.collectionId } album={ album } />
+                ))
+              )
+            }
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
+  };
 
-    return (
-      <div data-testid="page-search" className="page-search">
-        <Header />
-        <div className="search-content">
-          {loading ? <LoadingComp /> : searchContainer}
-          {hasResults && showingResults}
-        </div>
-      </div>
-    );
-  }
+  return (
+    <div data-testid="page-search" className="page-search">
+      <Header />
+      {renderSearchContainer()}
+      {loading ? <div className="loader-container"><Loader /></div> : renderResults()}
+    </div>
+  );
 }
 
 export default Search;

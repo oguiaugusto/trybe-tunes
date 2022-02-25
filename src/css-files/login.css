@@ -10,6 +10,10 @@
   width: 500px;
 }
 
+.login .loader {
+  height: 100vh;
+}
+
 @media screen and ( max-width : 576px ) {
 
   .login .login-form {
