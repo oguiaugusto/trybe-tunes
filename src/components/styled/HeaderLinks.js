@@ -18,7 +18,7 @@ const HeaderLinks = styled.div`
 
   a:hover {
     background-color: #616e76;
-    color: white;
+    color: #eee;
   }
 `;
 
