@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
-import Logo from '../logo-white.svg';
+import Logo from '../images/logo-white.png';
 import LoadingComp from '../pages/LoadingComp';
 import '../css-files/header.css';
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { createUser } from '../services/userAPI';
-import Logo from '../logo.svg';
+import Logo from '../images/logo-dark.png';
 import LoadingComp from './LoadingComp';
 import '../css-files/login.css';
 
