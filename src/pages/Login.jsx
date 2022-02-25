@@ -1,82 +1,66 @@
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+/* eslint-disable import/no-cycle */
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
+import { Loader } from '../components';
 import { createUser } from '../services/userAPI';
+import { FilteredLogo } from '../components/styled';
 import Logo from '../images/logo-dark.png';
-import LoadingComp from './LoadingComp';
 import '../css-files/login.css';
 
-class Login extends Component {
-  constructor() {
-    super();
+const THREE = 3;
 
-    this.state = {
-      userName: '',
-      isSaving: false,
-      isSaved: false,
-    };
+function Login() {
+  const history = useHistory();
+  const [username, setUsername] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
 
-    this.handleChange = this.handleChange.bind(this);
-    this.joinClick = this.joinClick.bind(this);
-  }
+  useEffect(() => {
+    if (loggedIn) history.push('/search');
+  }, [history, loggedIn]);
 
-  handleChange({ target: { name, value } }) {
-    this.setState({ [name]: value });
-  }
-
-  joinClick() {
-    this.setState({ isSaving: true }, () => {
-      const { userName } = this.state;
-
-      createUser({ name: userName })
-        .then(() => {
-          this.setState({
-            isSaved: true,
-            isSaving: false,
-          });
-        });
+  const joinClick = () => {
+    setLoading(true);
+    createUser({ name: username }).then(() => {
+      setLoading(false);
+      setLoggedIn(true);
     });
-  }
+  };
 
-  render() {
-    const { handleChange, joinClick } = this;
-    const { userName, isSaving, isSaved } = this.state;
-
-    const minLength = 3;
-    const canClick = userName.length < minLength;
-
-    const loginPage = (
-      <div data-testid="page-login" className="login">
+  return loading ? (
+    <Loader />
+  ) : (
+    <div data-testid="page-login" className="login">
+      <FilteredLogo>
+        <img src={ Logo } alt="Logo" className="white" />
         <img src={ Logo } alt="Logo" />
-        <form className="login-form">
-          <input
+      </FilteredLogo>
+      <Form className="login-form d-flex flex-column">
+        <Form.Group>
+          <Form.Control
             data-testid="login-name-input"
-            placeholder="Nome"
-            className="form-input"
+            placeholder="Name"
+            className="mb-3 mt-0"
             type="text"
-            name="userName"
-            value={ userName }
-            onChange={ handleChange }
+            name="username"
+            value={ username }
+            onChange={ ({ target: { value } }) => setUsername(value) }
           />
-          <button
-            data-testid="login-submit-button"
-            className="btn blue-btn"
-            type="button"
-            disabled={ canClick }
-            onClick={ joinClick }
-          >
-            Entrar
-          </button>
-        </form>
-      </div>
-    );
-
-    return (
-      <>
-        {isSaving ? <LoadingComp /> : loginPage}
-        {isSaved && <Redirect to="/search" />}
-      </>
-    );
-  }
+        </Form.Group>
+        <Button
+          variant="outline-light"
+          data-testid="login-submit-button"
+          className="mt-1"
+          type="button"
+          disabled={ username.length < THREE }
+          onClick={ joinClick }
+        >
+          Entrar
+        </Button>
+      </Form>
+    </div>
+  );
 }
 
 export default Login;
