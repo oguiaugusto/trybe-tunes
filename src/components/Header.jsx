@@ -1,65 +1,49 @@
-import React, { Component } from 'react';
+/* eslint-disable import/no-cycle */
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
+import { Loader } from '.';
 import Logo from '../images/logo-white.png';
-import LoadingComp from '../pages/LoadingComp';
+import { UserHeader, HeaderLinks } from './styled';
+import userDefault from '../userDefaultImg.png';
 import '../css-files/header.css';
 
-class Header extends Component {
-  constructor() {
-    super();
+function Header() {
+  const [name, setName] = useState('');
 
-    this.state = {
-      name: '',
-    };
-  }
+  useEffect(() => getUser().then((user) => setName(user.name)), []);
 
-  componentDidMount() {
-    this.setName();
-  }
+  const renderUserHeader = () => (
+    <>
+      <div className="user-icon">
+        <img src={ userDefault } alt="user default icon" />
+      </div>
+      <div className="user-name">
+        {
+          name === ''
+            ? <Loader size="sm" /> : <p data-testid="header-user-name">{ name }</p>
+        }
+      </div>
+    </>
+  );
 
-  setName = () => {
-    getUser()
-      .then((user) => {
-        this.setState({ name: user.name });
-      });
-  }
-
-  render() {
-    const { name } = this.state;
-
-    return (
-      <header className="header" data-testid="header-component">
-        <div className="header-top">
-          <Link to="/">
-            <img src={ Logo } alt="Logo" />
-          </Link>
-          <div className="user-header">
-            <div className="user-icon">
-              <i className="fas fa-circle fa-user" />
-            </div>
-            <div className="user-name">
-              {name === ''
-                ? <LoadingComp /> : <p data-testid="header-user-name">{ name }</p>}
-            </div>
-          </div>
-        </div>
-        <div className="header-links">
-          <ul>
-            <li>
-              <Link data-testid="link-to-search" to="/search">Search</Link>
-            </li>
-            <li>
-              <Link data-testid="link-to-favorites" to="/favorites">Favorites</Link>
-            </li>
-            <li>
-              <Link data-testid="link-to-profile" to="/profile">Profile</Link>
-            </li>
-          </ul>
-        </div>
-      </header>
-    );
-  }
+  return (
+    <header className="header" data-testid="header-component">
+      <div className="header-top">
+        <Link to="/">
+          <img src={ Logo } alt="Logo" className="logo" />
+        </Link>
+        <UserHeader className="d-flex align-items-center">
+          {renderUserHeader()}
+        </UserHeader>
+      </div>
+      <HeaderLinks className="d-grid">
+        <Link data-testid="link-to-search" to="/search">Search</Link>
+        <Link data-testid="link-to-favorites" to="/favorites">Favorites</Link>
+        <Link data-testid="link-to-profile" to="/profile">Profile</Link>
+      </HeaderLinks>
+    </header>
+  );
 }
 
 export default Header;
