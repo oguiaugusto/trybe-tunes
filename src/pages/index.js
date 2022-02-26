@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import Login from './Login';
 import Search from './Search';
 import Album from './Album';

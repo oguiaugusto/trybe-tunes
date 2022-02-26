@@ -8,6 +8,7 @@ import ProfileEditContainer from './ProfileEditContainer';
 import AlbumContainer from './AlbumContainer';
 import IconBtn from './IconBtn';
 import SongContainer from './SongContainer';
+import FavoriteContainer from './FavoriteContainer';
 
 export {
   FilteredLogo,
@@ -20,4 +21,5 @@ export {
   AlbumContainer,
   IconBtn,
   SongContainer,
+  FavoriteContainer,
 };

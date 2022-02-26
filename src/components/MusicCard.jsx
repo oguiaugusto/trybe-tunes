@@ -15,16 +15,14 @@ function MusicCard({ song, updateSongs, favoriteCard }) {
     setLoading(false);
   }), [song.trackId]);
 
-  useEffect(() => {
-    if (loading) {
-      if (isFavorite) addSong(song).then(() => setLoading(false));
-      if (!isFavorite) removeSong(song).then(() => { setLoading(false); updateSongs(); });
-    }
-  }, [isFavorite, loading, song, updateSongs]);
-
   const handleFavorite = (checked) => {
     setIsFavorite(checked);
     setLoading(true);
+    if (checked) {
+      addSong(song).then(() => setLoading(false));
+    } else {
+      removeSong(song).then(() => { setLoading(false); updateSongs(); });
+    }
   };
 
   const renderAudio = () => (
@@ -48,7 +46,7 @@ function MusicCard({ song, updateSongs, favoriteCard }) {
           ) : (
             <img
               className="album-cover"
-              src={ song.artworkUrl100 }
+              src={ song.artworkUrl100.split('100x100').join('500x500') }
               alt={ song.collectionName }
             />
           )
