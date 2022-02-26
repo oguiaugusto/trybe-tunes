@@ -6,5 +6,6 @@ import Favorites from './Favorites';
 import Profile from './Profile';
 import ProfileEdit from './ProfileEdit';
 import NotFound from './NotFound';
+import SearchQuery from './SearchQuery';
 
-export { Login, Search, Album, Favorites, Profile, ProfileEdit, NotFound };
+export { Login, Search, Album, Favorites, Profile, ProfileEdit, NotFound, SearchQuery };

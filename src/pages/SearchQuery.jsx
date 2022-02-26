@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable import/no-cycle */
 import React, { useEffect, useState } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
 import { InputGroup, Form, Button } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import { Header, Loader, AlbumCard } from '../components';
 import { SearchField } from '../components/styled';
@@ -10,16 +10,20 @@ import '../css-files/search.css';
 
 const TWO = 2;
 
-function Search() {
+function SearchQuery() {
+  const { query } = useParams();
   const history = useHistory();
+
   const [artistName, setArtistName] = useState('');
   const [resultsFor, setResultsFor] = useState('');
   const [albums, setAlbums] = useState([]);
   const [loading, setLoading] = useState(false);
   const [haveResults, setHaveResults] = useState(false);
 
+  useEffect(() => { setArtistName(query); setResultsFor(query); }, [query]);
+
   useEffect(() => {
-    if (artistName !== '') {
+    if (artistName !== '' || query !== '') {
       setLoading(true);
       searchAlbumsAPI(resultsFor).then((r) => {
         setAlbums(r);
@@ -95,4 +99,4 @@ function Search() {
   );
 }
 
-export default Search;
+export default SearchQuery;

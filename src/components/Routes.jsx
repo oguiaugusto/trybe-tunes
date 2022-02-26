@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import {
   Login,
   Search,
+  SearchQuery,
   Album,
   Favorites,
   Profile,
@@ -18,7 +19,8 @@ export default function Routes() {
       <Route path="/profile/edit" component={ ProfileEdit } />
       <Route path="/profile" component={ Profile } />
       <Route path="/favorites" component={ Favorites } />
-      <Route path="/search" component={ Search } />
+      <Route exact path="/search" component={ Search } />
+      <Route path="/search/:query" render={ (props) => <SearchQuery { ...props } /> } />
       <Route exact path="/" component={ Login } />
       <Route path="*" component={ NotFound } />
     </Switch>

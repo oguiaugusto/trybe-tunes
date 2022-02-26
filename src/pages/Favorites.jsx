@@ -4,7 +4,6 @@ import { Header, Loader } from '../components';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 import { FavoriteContainer } from '../components/styled';
 import MusicCard from '../components/MusicCard';
-import '../css-files/favorites.css';
 
 function Favorites() {
   const [favoriteSongs, setFavoriteSongs] = useState([]);
