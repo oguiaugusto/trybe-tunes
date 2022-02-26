@@ -4,7 +4,10 @@ import Spinner from 'react-bootstrap/Spinner';
 
 function Loader({ size }) {
   return (
-    <div className="loader d-flex align-items-center justify-content-center">
+    <div
+      data-testid="loader"
+      className="loader d-flex align-items-center justify-content-center"
+    >
       <Spinner animation="border" variant="light" size={ size } />
     </div>
   );

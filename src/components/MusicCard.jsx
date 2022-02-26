@@ -1,139 +1,81 @@
-import React, { Component } from 'react';
+/* eslint-disable import/no-cycle */
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import { Loader } from '.';
 import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
-import LoadingComp from '../pages/LoadingComp';
+import { SongContainer, IconBtn } from './styled';
 
-class MusicCard extends Component {
-  constructor() {
-    super();
+function MusicCard({ song, updateSongs, favoriteCard }) {
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-    this.state = {
-      songFavorite: false,
-      loading: false,
-      checked: false,
-    };
+  useEffect(() => getFavoriteSongs().then((songs) => {
+    if (songs.some((s) => s.trackId === song.trackId)) setIsFavorite(true);
+    setLoading(false);
+  }), [song.trackId]);
 
-    this.handleChange = this.handleChange.bind(this);
-    this.setFavoriteSongs = this.setFavoriteSongs.bind(this);
-  }
-
-  componentDidMount() {
-    getFavoriteSongs()
-      .then((songs) => {
-        this.setFavoriteSongs(songs);
-      });
-  }
-
-  handleChange({ target: { name, checked } }) {
-    this.setState({ [name]: checked });
-    const { songObj } = this.props;
-
-    if (checked) {
-      this.setState({ loading: true, checked: true }, () => {
-        addSong(songObj)
-          .then(() => {
-            this.setState({ loading: false });
-          });
-      });
-    } else {
-      this.setState({ loading: true, checked: false }, () => {
-        removeSong(songObj)
-          .then(() => {
-            this.setState({ loading: false });
-            const { removedSong } = this.props;
-            removedSong();
-          });
-      });
+  useEffect(() => {
+    if (loading) {
+      if (isFavorite) addSong(song).then(() => setLoading(false));
+      if (!isFavorite) removeSong(song).then(() => { setLoading(false); updateSongs(); });
     }
-  }
+  }, [isFavorite, loading, song, updateSongs]);
 
-  setFavoriteSongs(songs) {
-    const { trackId } = this.props;
+  const handleFavorite = (checked) => {
+    setIsFavorite(checked);
+    setLoading(true);
+  };
 
-    if (songs.some((song) => song.trackId === trackId)) {
-      this.setState({ checked: true });
-    }
-  }
+  const renderAudio = () => (
+    // eslint-disable-next-line jsx-a11y/media-has-caption
+    <audio
+      data-testid="audio-component"
+      controls
+      controlsList="nodownload noplaybackrate"
+    >
+      <source src={ song.previewUrl } />
+    </audio>
+  );
 
-  render() {
-    const { songFavorite, loading, checked } = this.state;
-    const { handleChange } = this;
-
-    const {
-      trackName,
-      trackNumber,
-      previewUrl,
-      trackId,
-      favoriteCard,
-      artworkUrl100,
-      collectionName,
-    } = this.props;
-
-    const audio = (
-      <audio
-        data-testid="audio-component"
-        src={ previewUrl }
-        controls
-      >
-        <track kind="captions" />
-        O seu navegador não suporta o elemento
-        <code>audio</code>
-      </audio>
-    );
-
-    const titleNumber = (
-      <p className="song-number">{ `${trackNumber}` }</p>
-    );
-
-    const albumImg = (
-      <img className="album-cover" src={ artworkUrl100 } alt={ collectionName } />
-    );
-
-    return (
-      <div className="song">
-        {!favoriteCard ? titleNumber : albumImg}
-        <p className="song-title">{ trackName }</p>
-        {loading ? <LoadingComp /> : audio}
-        <label htmlFor={ `favoriteMusic-${trackId}` }>
-          Favorita
-          <input
-            data-testid={ `checkbox-music-${trackId}` }
-            className="favorite-input"
-            type="checkbox"
-            id={ `favoriteMusic-${trackId}` }
-            checked={ checked }
-            value={ songFavorite }
-            onChange={ handleChange }
-          />
-        </label>
+  return (
+    <SongContainer>
+      <hr />
+      <div className="song-info">
+        {
+          !favoriteCard ? (
+            <p className="song-number">{ `${song.trackNumber}` }</p>
+          ) : (
+            <img
+              className="album-cover"
+              src={ song.artworkUrl100 }
+              alt={ song.collectionName }
+            />
+          )
+        }
+        <p className="song-title">{ song.trackName }</p>
+        <IconBtn
+          type="button"
+          data-testid={ `checkbox-music-${song.trackId}` }
+          onClick={ () => handleFavorite(!isFavorite) }
+        >
+          {isFavorite ? <AiFillHeart size={ 20 } /> : <AiOutlineHeart size={ 20 } />}
+        </IconBtn>
       </div>
-    );
-  }
+      {loading ? <Loader /> : renderAudio()}
+    </SongContainer>
+  );
 }
 
 MusicCard.propTypes = {
-  trackName: PropTypes.string,
-  previewUrl: PropTypes.string,
-  trackNumber: PropTypes.number,
-  trackId: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
-  songObj: PropTypes.objectOf(PropTypes.any).isRequired,
-  favoriteCard: PropTypes.bool.isRequired,
-  artworkUrl100: PropTypes.string,
-  collectionName: PropTypes.string,
-  removedSong: PropTypes.func,
+  song: PropTypes.objectOf(PropTypes.any).isRequired,
+  favoriteCard: PropTypes.bool,
+  updateSongs: PropTypes.func,
 };
 
 MusicCard.defaultProps = {
-  trackName: '',
-  previewUrl: '',
-  trackId: 0,
-  trackNumber: 0,
-  artworkUrl100: '',
-  collectionName: '',
-  removedSong: () => {},
+  favoriteCard: false,
+  updateSongs: () => {},
 };
 
 export default MusicCard;
