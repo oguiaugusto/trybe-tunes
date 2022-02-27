@@ -23,7 +23,6 @@ function Login() {
   const joinClick = () => {
     setLoading(true);
     createUser({ name: username }).then(() => {
-      setLoading(false);
       setLoggedIn(true);
     });
   };
@@ -39,7 +38,10 @@ function Login() {
               <img src={ Logo } alt="Logo" className="white" />
               <img src={ Logo } alt="Logo" />
             </FilteredLogo>
-            <Form className="login-form d-flex flex-column">
+            <Form
+              className="login-form d-flex flex-column"
+              onSubmit={ (e) => { e.preventDefault(); joinClick(); } }
+            >
               <Form.Group>
                 <Form.Control
                   data-testid="login-name-input"
