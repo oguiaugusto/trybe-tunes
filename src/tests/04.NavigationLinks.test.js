@@ -21,10 +21,10 @@ describe('4 - Crie os links de navegação no cabeçalho', () => {
   // Search page
   it('Será validado se os links de navegação são exibidos na página de pesquisa',
     async () => {
-      renderPath("/search");
+      renderPath("/#/search");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -37,38 +37,38 @@ describe('4 - Crie os links de navegação no cabeçalho', () => {
 
   it('Será validado se a navegação entre a página de pesquisa e a página de músicas favoritas ocorre corretamente',
     async () => {
-      renderPath("/search");
+      renderPath("/#/search");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
       userEvent.click(screen.getByTestId('link-to-favorites'));
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
-      expect(window.location.pathname).toBe('/favorites');
+      expect(window.location.hash).toBe('#/favorites');
     });
 
   it('Será validado se a navegação entre a página de pesquisa e a página de exibição do perfil ocorre corretamente',
     async () => {
-      renderPath("/search");
+      renderPath("/#/search");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
       userEvent.click(screen.getByTestId('link-to-profile'));
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
-      expect(window.location.pathname).toBe('/profile');
+      expect(window.location.hash).toBe('#/profile');
     });
     
   // Album page
@@ -77,10 +77,10 @@ describe('4 - Crie os links de navegação no cabeçalho', () => {
       jest.spyOn(musicsAPI, 'default').mockImplementation(
         () => Promise.resolve(musicAPIDefaultResponse),
       );
-      renderPath("/album/12");
+      renderPath("/#/album/12");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -96,20 +96,20 @@ describe('4 - Crie os links de navegação no cabeçalho', () => {
       jest.spyOn(musicsAPI, 'default').mockImplementation(
         () => Promise.resolve(musicAPIDefaultResponse),
       );
-      renderPath("/album/12");
+      renderPath("/#/album/12");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
       userEvent.click(screen.getByTestId('link-to-search'));
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
-      expect(window.location.pathname).toBe('/search');
+      expect(window.location.hash).toBe('#/search');
     });
 
   it('Será validado se a navegação entre a página do álbum e a página de músicas favoritas ocorre corretamente',
@@ -117,20 +117,20 @@ describe('4 - Crie os links de navegação no cabeçalho', () => {
       jest.spyOn(musicsAPI, 'default').mockImplementation(
         () => Promise.resolve(musicAPIDefaultResponse),
       );
-      renderPath("/album/12");
+      renderPath("/#/album/12");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
       userEvent.click(screen.getByTestId('link-to-favorites'));
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
-      expect(window.location.pathname).toBe('/favorites');
+      expect(window.location.hash).toBe('#/favorites');
     });
 
   it('Será validado se a navegação entre a página do álbum e a página de exibição do perfil ocorre corretamente',
@@ -138,29 +138,29 @@ describe('4 - Crie os links de navegação no cabeçalho', () => {
       jest.spyOn(musicsAPI, 'default').mockImplementation(
         () => Promise.resolve(musicAPIDefaultResponse),
       );
-      renderPath("/album/12");
+      renderPath("/#/album/12");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
       userEvent.click(screen.getByTestId('link-to-profile'));
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
-      expect(window.location.pathname).toBe('/profile');
+      expect(window.location.hash).toBe('#/profile');
     });
 
   // Favorites page
   it('Será validado se os links de navegação são exibidos na página de músicas favoritas',
     async () => {
-      renderPath("/favorites");
+      renderPath("/#/favorites");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -173,47 +173,47 @@ describe('4 - Crie os links de navegação no cabeçalho', () => {
 
   it('Será validado se a navegação entre a página de músicas favoritas e a página de pesquisa ocorre corretamente',
     async () => {
-      renderPath("/favorites");
+      renderPath("/#/favorites");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
       userEvent.click(screen.getByTestId('link-to-search'));
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
-      expect(window.location.pathname).toBe('/search');
+      expect(window.location.hash).toBe('#/search');
     });
 
   it('Será validado se a navegação entre a página de músicas favoritas e a página de exibição perfil ocorre corretamente',
     async () => {
-      renderPath("/favorites");
+      renderPath("/#/favorites");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
       userEvent.click(screen.getByTestId('link-to-profile'));
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
-      expect(window.location.pathname).toBe('/profile');
+      expect(window.location.hash).toBe('#/profile');
     });
 
   // Profile page
   it('Será validado se os links de navegação são exibidos na página de exibição do perfil',
     async () => {
-      renderPath("/profile");
+      renderPath("/#/profile");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -226,47 +226,47 @@ describe('4 - Crie os links de navegação no cabeçalho', () => {
 
   it('Será validado se a navegação entre a página de exibição do perfil e a página de pesquisa ocorre corretamente',
     async () => {
-      renderPath("/profile");
+      renderPath("/#/profile");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
       userEvent.click(screen.getByTestId('link-to-search'));
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
-      expect(window.location.pathname).toBe('/search');
+      expect(window.location.hash).toBe('#/search');
     });
 
   it('Será validado se a navegação entre a página de exibição do perfil e a página de músicas favoritas ocorre corretamente',
     async () => {
-      renderPath("/profile");
+      renderPath("/#/profile");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
       userEvent.click(screen.getByTestId('link-to-favorites'));
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
-      expect(window.location.pathname).toBe('/favorites');
+      expect(window.location.hash).toBe('#/favorites');
     });
 
   // Edit profile page  
   it('Será validado se os links de navegação são exibidos na página de edição do perfil',
     async () => {
-      renderPath("/profile/edit");
+      renderPath("/#/profile/edit");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -279,55 +279,55 @@ describe('4 - Crie os links de navegação no cabeçalho', () => {
 
   it('Será validado se a navegação entre a página de edição do perfil e a página de pesquisa ocorre corretamente',
     async () => {
-      renderPath("/profile/edit");
+      renderPath("/#/profile/edit");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
       userEvent.click(screen.getByTestId('link-to-search'));
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
-      expect(window.location.pathname).toBe('/search');
+      expect(window.location.hash).toBe('#/search');
     });
 
   it('Será validado se a navegação entre a página de edição do perfil e a página de músicas favoritas ocorre corretamente',
     async () => {
-      renderPath("/profile/edit");
+      renderPath("/#/profile/edit");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
       userEvent.click(screen.getByTestId('link-to-favorites'));
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
-      expect(window.location.pathname).toBe('/favorites');
+      expect(window.location.hash).toBe('#/favorites');
     });
 
   it('Será validado se a navegação entre a página de edição do perfil e a página de exibição do perfil ocorre corretamente',
     async () => {
-      renderPath("/profile/edit");
+      renderPath("/#/profile/edit");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
       userEvent.click(screen.getByTestId('link-to-profile'));
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
-      expect(window.location.pathname).toBe('/profile');
+      expect(window.location.hash).toBe('#/profile');
     });
 });

@@ -32,7 +32,7 @@ describe('11 - Crie o mecanismo para remover músicas na lista de músicas favor
 
       const spy = jest.spyOn(favoriteSongsAPI, 'removeSong');
 
-      renderPath("/album/12");
+      renderPath("/#/album/12");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
@@ -55,7 +55,7 @@ describe('11 - Crie o mecanismo para remover músicas na lista de músicas favor
         () => Promise.resolve(musicAPIDefaultResponse),
       );
 
-      renderPath("/album/12");
+      renderPath("/#/album/12");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
@@ -79,7 +79,7 @@ describe('11 - Crie o mecanismo para remover músicas na lista de músicas favor
         () => Promise.resolve(musicAPIDefaultResponse),
       );
 
-      renderPath("/album/12");
+      renderPath("/#/album/12");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),

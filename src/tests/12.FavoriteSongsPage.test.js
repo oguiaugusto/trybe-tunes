@@ -22,7 +22,7 @@ describe('12 - Crie a lista de músicas favoritas', () => {
     async () => {
       const spy = jest.spyOn(favoriteSongsAPI, 'getFavoriteSongs');
 
-      renderPath("/favorites");
+      renderPath("/#/favorites");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
@@ -48,7 +48,7 @@ describe('12 - Crie a lista de músicas favoritas', () => {
       ];
       localStorage.setItem('favorite_songs', JSON.stringify(favoriteSongs));
 
-      renderPath("/favorites");
+      renderPath("/#/favorites");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
@@ -80,7 +80,7 @@ describe('12 - Crie a lista de músicas favoritas', () => {
       ];
       localStorage.setItem('favorite_songs', JSON.stringify(favoriteSongs));
 
-      renderPath("/favorites");
+      renderPath("/#/favorites");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),

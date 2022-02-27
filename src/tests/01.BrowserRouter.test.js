@@ -15,10 +15,10 @@ describe('1 - Crie as rotas necessárias para a aplicação', () => {
   it('Será validado que rota / é uma rota existente e que ela renderiza com data-testid page-login ser acessada',
     async () => {
       localStorage.clear();
-      renderPath("/");
+      renderPath("/#/");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
         
@@ -27,10 +27,10 @@ describe('1 - Crie as rotas necessárias para a aplicação', () => {
 
   it('Será validado que rota /search é uma rota existente e que ela renderiza o componente com data-testid page-search',
   async () => {
-    renderPath("/search");
+    renderPath("/#/search");
 
     await waitFor(
-      () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+      () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
       { timeout: 3000 }
     );
       
@@ -44,10 +44,10 @@ describe('1 - Crie as rotas necessárias para a aplicação', () => {
       () => Promise.resolve(musicAPIDefaultResponse),
     );
 
-    renderPath("/album/12");
+    renderPath("/#/album/12");
 
     await waitFor(
-      () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+      () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
       { timeout: 3500 }
     );
       
@@ -58,10 +58,10 @@ describe('1 - Crie as rotas necessárias para a aplicação', () => {
   async () => {
     localStorage.setItem('favorite_songs', JSON.stringify([]));
 
-    renderPath("/favorites");
+    renderPath("/#/favorites");
 
     await waitFor(
-      () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+      () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
       { timeout: 3000 }
     );
       
@@ -70,10 +70,10 @@ describe('1 - Crie as rotas necessárias para a aplicação', () => {
 
   it('Será validado que rota /profile é uma rota existente e que ela renderiza o componente com data-testid page-profile',
   async () => {
-    renderPath("/profile");
+    renderPath("/#/profile");
 
     await waitFor(
-      () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+      () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
       { timeout: 3000 }
     );
       
@@ -82,10 +82,10 @@ describe('1 - Crie as rotas necessárias para a aplicação', () => {
 
   it('Será validado que rota /profile/edit é uma rota existente e que ela renderiza o componente com data-testid page-profile-edit',
   async () => {
-    renderPath("/profile/edit");
+    renderPath("/#/profile/edit");
 
     await waitFor(
-      () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+      () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
       { timeout: 3000 }
     );
       
@@ -94,10 +94,10 @@ describe('1 - Crie as rotas necessárias para a aplicação', () => {
 
   it('Será validado se existe uma página para rotas não mapeadas e que renderiza um componente com o data-testid com valor page-not-found',
   async () => {
-    renderPath("/page/not/found");
+    renderPath("/#/page/not/found");
 
     await waitFor(
-      () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+      () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
       { timeout: 3000 }
     );
       

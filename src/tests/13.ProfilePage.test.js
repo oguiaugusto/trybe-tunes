@@ -17,7 +17,7 @@ describe('13 - Crie a exibição de perfil', () => {
     async () => {
       const spy = jest.spyOn(userAPI, 'getUser');
 
-      renderPath("/profile");
+      renderPath("/#/profile");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
@@ -29,7 +29,7 @@ describe('13 - Crie a exibição de perfil', () => {
 
   it('Será validado se as informações da pessoa logada são exibidas na tela',
     async () => {
-      renderPath("/profile");
+      renderPath("/#/profile");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
@@ -44,7 +44,7 @@ describe('13 - Crie a exibição de perfil', () => {
 
   it('Será validado se foi criado um link para a rota de edição de perfil com o texto Editar perfil',
     async () => {
-      renderPath("/profile");
+      renderPath("/#/profile");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
@@ -56,7 +56,7 @@ describe('13 - Crie a exibição de perfil', () => {
 
   it('Será validado se ao clicar no link Editar perfil, a navegação acontece corretamente',
     async () => {
-      renderPath("/profile");
+      renderPath("/#/profile");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
@@ -70,7 +70,7 @@ describe('13 - Crie a exibição de perfil', () => {
         { timeout: 3000 }
       );
 
-      expect(window.location.pathname).toBe('/profile/edit');
+      expect(window.location.hash).toBe('#/profile/edit');
     });
 
 });

@@ -20,10 +20,10 @@ describe('3 - Crie um componente de cabeçalho', () => {
 
   it('Será validado se o componente Header é renderizado na página /search',
     async () => {
-      renderPath("/search");
+      renderPath("/#/search");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -35,10 +35,10 @@ describe('3 - Crie um componente de cabeçalho', () => {
       jest.spyOn(musicsAPI, 'default').mockImplementation(
         () => Promise.resolve(musicAPIDefaultResponse),
       );
-      renderPath("/album/123");
+      renderPath("/#/album/123");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -47,10 +47,10 @@ describe('3 - Crie um componente de cabeçalho', () => {
     
   it('Será validado se o componente Header é renderizado na página /favorites',
     async () => {
-      renderPath("/favorites");
+      renderPath("/#/favorites");
   
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
   
@@ -59,10 +59,10 @@ describe('3 - Crie um componente de cabeçalho', () => {
 
   it('Será validado se o componente Header é renderizado na página /profile',
     async () => {
-      renderPath("/profile");
+      renderPath("/#/profile");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -71,10 +71,10 @@ describe('3 - Crie um componente de cabeçalho', () => {
 
   it('Será validado se o componente Header é renderizado na página /profile/edit',
     async () => {
-      renderPath("/profile/edit");
+      renderPath("/#/profile/edit");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -84,11 +84,11 @@ describe('3 - Crie um componente de cabeçalho', () => {
   it('Será validado se a função getUser é chamada ao renderizar o componente',
     async () => {
       const spy = jest.spyOn(userAPI, 'getUser');
-      renderPath("/search");
+      renderPath("/#/search");
 
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -97,7 +97,7 @@ describe('3 - Crie um componente de cabeçalho', () => {
 
   it('Será validado se a mensagem de Carregando... é exibida ao renderizar o componente e é removida após o retorno da API',
     async () => {
-      renderPath("/search");
+      renderPath("/#/search");
 
       expect(screen.queryByTestId('loader')).toBeInTheDocument();
       
@@ -111,7 +111,7 @@ describe('3 - Crie um componente de cabeçalho', () => {
 
   it('Será validado se o nome da pessoa usuária está presente na tela após o retorno da API',
     async () => {
-      renderPath("/search");
+      renderPath("/#/search");
 
       await waitForElementToBeRemoved(
         () => screen.getAllByTestId('loader'),

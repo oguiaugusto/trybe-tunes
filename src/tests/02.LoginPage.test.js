@@ -15,10 +15,10 @@ describe('2 - Crie um formulário para identificação', () => {
 
   it('Será validado se ao navegar para a rota /, o input e o botão especificados estão presentes',
     async () => {
-      renderPath("/");
+      renderPath("/#/");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
         
@@ -28,10 +28,10 @@ describe('2 - Crie um formulário para identificação', () => {
 
   it('Será validado se o botão só é habilitado se o input de nome tiver 3 ou mais caracteres',
     async () => {
-      renderPath("/");
+      renderPath("/#/");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -64,10 +64,10 @@ describe('2 - Crie um formulário para identificação', () => {
     async () => {
       const spy = jest.spyOn(userAPI, 'createUser');
 
-      renderPath("/");
+      renderPath("/#/");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -81,7 +81,7 @@ describe('2 - Crie um formulário para identificação', () => {
 
   it('Será validado se ao clicar no botão, a mensagem Carregando... é exibida e após a resposta da API acontece o redirecionamento para a rota /search',
     async () => {
-      renderPath("/");
+      renderPath("/#/");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
@@ -100,6 +100,6 @@ describe('2 - Crie um formulário para identificação', () => {
       );
       expect(loadingElement).not.toBeInTheDocument();
 
-      expect(window.location.pathname).toBe('/search');
+      expect(window.location.hash).toBe('#/search');
     });
 });

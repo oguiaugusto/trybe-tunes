@@ -29,10 +29,10 @@ describe('9 - Faça a requisição para recuperar as músicas favoritas ao entra
       );
       const spy = jest.spyOn(favoriteSongsAPI, 'getFavoriteSongs');
 
-      renderPath("/album/12");
+      renderPath("/#/album/12");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -46,7 +46,7 @@ describe('9 - Faça a requisição para recuperar as músicas favoritas ao entra
         () => Promise.resolve(musicAPIDefaultResponse),
       );
 
-      renderPath("/album/12");
+      renderPath("/#/album/12");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),

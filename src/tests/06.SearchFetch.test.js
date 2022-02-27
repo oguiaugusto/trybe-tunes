@@ -18,7 +18,7 @@ describe('6 - Faça a requisição para pesquisar artistas', () => {
       const spy = jest.spyOn(searchAlbumsAPI, 'default').mockImplementation(
         () => Promise.resolve([]),
       );
-      renderPath("/search");
+      renderPath("/#/search");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
@@ -41,7 +41,7 @@ describe('6 - Faça a requisição para pesquisar artistas', () => {
     jest.spyOn(searchAlbumsAPI, 'default').mockImplementation(
       () => Promise.resolve(searchAlbumDefaultResponse),
     );
-    renderPath("/search");
+    renderPath("/#/search");
 
     await waitFor(
       () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
@@ -69,7 +69,7 @@ describe('6 - Faça a requisição para pesquisar artistas', () => {
       jest.spyOn(searchAlbumsAPI, 'default').mockImplementation(
         () => Promise.resolve(searchAlbumDefaultResponse),
       );
-      renderPath("/search");
+      renderPath("/#/search");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
@@ -94,7 +94,7 @@ describe('6 - Faça a requisição para pesquisar artistas', () => {
       jest.spyOn(searchAlbumsAPI, 'default').mockImplementation(
         () => Promise.resolve([]),
       );
-      renderPath("/search");
+      renderPath("/#/search");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
@@ -117,7 +117,7 @@ describe('6 - Faça a requisição para pesquisar artistas', () => {
       jest.spyOn(searchAlbumsAPI, 'default').mockImplementation(
         () => Promise.resolve(searchAlbumDefaultResponse),
       );
-      renderPath("/search");
+      renderPath("/#/search");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
@@ -137,6 +137,6 @@ describe('6 - Faça a requisição para pesquisar artistas', () => {
 
       userEvent.click(screen.getByTestId('link-to-album-101'));
 
-      expect(window.location.pathname).toBe('/album/101');
+      expect(window.location.hash).toBe('#/album/101');
     });
 });

@@ -17,7 +17,7 @@ describe('14 - Crie o formulário de edição de perfil', () => {
     async () => {
       const spy = jest.spyOn(userAPI, 'getUser');
 
-      renderPath("/profile/edit");
+      renderPath("/#/profile/edit");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
@@ -29,7 +29,7 @@ describe('14 - Crie o formulário de edição de perfil', () => {
 
   it('Será validado se o formulário é renderizado já preenchido com as informações da pessoa logada',
     async () => {
-      renderPath("/profile/edit");
+      renderPath("/#/profile/edit");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
@@ -45,7 +45,7 @@ describe('14 - Crie o formulário de edição de perfil', () => {
 
   it('Será validado se é possível alterar os valores dos campos',
     async () => {
-      renderPath("/profile/edit");
+      renderPath("/#/profile/edit");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
@@ -82,7 +82,7 @@ describe('14 - Crie o formulário de edição de perfil', () => {
         description: "",
         image: ""
       }));
-      renderPath("/profile/edit");
+      renderPath("/#/profile/edit");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
@@ -121,7 +121,7 @@ describe('14 - Crie o formulário de edição de perfil', () => {
   it('Será validado se as informações são enviadas usando a API updateUser',
     async () => {
       const spy = jest.spyOn(userAPI, 'updateUser');
-      renderPath("/profile/edit");
+      renderPath("/#/profile/edit");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
@@ -156,7 +156,7 @@ describe('14 - Crie o formulário de edição de perfil', () => {
 
   it('Será validado se após salvar as informações a pessoa é redirecionada para a página de exibição de perfil',
     async () => {
-      renderPath("/profile/edit");
+      renderPath("/#/profile/edit");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
@@ -187,6 +187,6 @@ describe('14 - Crie o formulário de edição de perfil', () => {
       );
 
       expect(screen.getByText('Edit Profile')).toBeInTheDocument();
-      expect(window.location.pathname).toBe('/profile');
+      expect(window.location.hash).toBe('#/profile');
     });
 });

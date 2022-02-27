@@ -18,10 +18,10 @@ describe('7 - Crie a lista de músicas do álbum selecionado', () => {
       () => Promise.resolve(musicAPIDefaultResponse),
     );
 
-    renderPath("/album/12");
+    renderPath("/#/album/12");
 
     await waitFor(
-      () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+      () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
       { timeout: 3000 }
     );
 
@@ -34,10 +34,10 @@ describe('7 - Crie a lista de músicas do álbum selecionado', () => {
       () => Promise.resolve(musicAPIDefaultResponse),
     );
 
-    renderPath("/album/12");
+    renderPath("/#/album/12");
 
     await waitFor(
-      () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+      () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
       { timeout: 3000 }
     );
 
@@ -55,7 +55,7 @@ describe('7 - Crie a lista de músicas do álbum selecionado', () => {
       () => Promise.resolve(musicAPIDefaultResponse),
     );
 
-    renderPath("/album/12");
+    renderPath("/#/album/12");
 
     await waitFor(
       () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),

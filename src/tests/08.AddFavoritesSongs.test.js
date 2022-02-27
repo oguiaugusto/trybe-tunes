@@ -21,7 +21,7 @@ describe('8 - Crie o mecanismo para adicionar músicas na lista de músicas favo
         () => Promise.resolve(musicAPIDefaultResponse),
       );
 
-      renderPath("/album/123");
+      renderPath("/#/album/123");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
@@ -42,7 +42,7 @@ describe('8 - Crie o mecanismo para adicionar músicas na lista de músicas favo
       
       const spy = jest.spyOn(favoriteSongsAPI, 'addSong');
 
-      renderPath("/album/123");
+      renderPath("/#/album/123");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
@@ -65,7 +65,7 @@ describe('8 - Crie o mecanismo para adicionar músicas na lista de músicas favo
         () => Promise.resolve(musicAPIDefaultResponse),
       );
       
-      renderPath("/album/123");
+      renderPath("/#/album/123");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
@@ -90,7 +90,7 @@ describe('8 - Crie o mecanismo para adicionar músicas na lista de músicas favo
       );
       
 
-      renderPath("/album/123");
+      renderPath("/#/album/123");
 
       await waitFor(
         () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),

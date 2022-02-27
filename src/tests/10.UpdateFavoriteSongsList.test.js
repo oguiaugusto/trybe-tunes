@@ -23,16 +23,16 @@ describe('10 - Faça a requisição para recuperar as músicas favoritas e atual
       
       const spy = jest.spyOn(favoriteSongsAPI, 'getFavoriteSongs');
 
-      renderPath("/album/123");
+      renderPath("/#/album/123");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
       userEvent.click(screen.getByTestId('checkbox-music-12'));
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -48,10 +48,10 @@ describe('10 - Faça a requisição para recuperar as músicas favoritas e atual
       );
       
 
-      renderPath("/album/123");
+      renderPath("/#/album/123");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -59,7 +59,7 @@ describe('10 - Faça a requisição para recuperar as músicas favoritas e atual
 
       userEvent.click(screen.getByTestId('checkbox-music-12'));
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -67,7 +67,7 @@ describe('10 - Faça a requisição para recuperar as músicas favoritas e atual
 
       userEvent.click(screen.getByTestId('checkbox-music-31'));
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
