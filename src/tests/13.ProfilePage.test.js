@@ -20,7 +20,7 @@ describe('13 - Crie a exibição de perfil', () => {
       renderPath("/profile");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -32,7 +32,7 @@ describe('13 - Crie a exibição de perfil', () => {
       renderPath("/profile");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -47,11 +47,11 @@ describe('13 - Crie a exibição de perfil', () => {
       renderPath("/profile");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
-      expect(screen.getByText("Editar perfil")).toBeInTheDocument();
+      expect(screen.getByText("Edit Profile")).toBeInTheDocument();
     });
 
   it('Será validado se ao clicar no link Editar perfil, a navegação acontece corretamente',
@@ -59,14 +59,14 @@ describe('13 - Crie a exibição de perfil', () => {
       renderPath("/profile");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
-      userEvent.click(screen.getByText("Editar perfil"));
+      userEvent.click(screen.getByText("Edit Profile"));
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
