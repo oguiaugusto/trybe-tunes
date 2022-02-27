@@ -21,7 +21,10 @@ function MusicCard({ song, updateSongs, favoriteCard }) {
     if (checked) {
       addSong(song).then(() => setLoading(false));
     } else {
-      removeSong(song).then(() => { setLoading(false); updateSongs(); });
+      removeSong(song).then(() => {
+        updateSongs();
+        if (!favoriteCard) setLoading(false);
+      });
     }
   };
 

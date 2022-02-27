@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 const SongContainer = styled.div`
+  .loader {
+    margin: 0;
+  }
+
   .song-info {
     display: grid;
     grid-template-columns: 10% 1fr 10%;
