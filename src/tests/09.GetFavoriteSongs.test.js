@@ -49,12 +49,11 @@ describe('9 - Faça a requisição para recuperar as músicas favoritas ao entra
       renderPath("/album/12");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
-      expect(screen.queryAllByRole('checkbox', { checked: true })).toHaveLength(2);
-      expect(screen.getAllByRole('checkbox', { checked: false })).toHaveLength(2);
+      expect(JSON.parse(global.localStorage.getItem('favorite_songs'))).toHaveLength(2);
     });
 
 });

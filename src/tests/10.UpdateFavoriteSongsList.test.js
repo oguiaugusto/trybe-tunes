@@ -55,8 +55,7 @@ describe('10 - Faça a requisição para recuperar as músicas favoritas e atual
         { timeout: 3000 }
       );
 
-      expect(screen.queryAllByRole('checkbox', { checked: true })).toHaveLength(0);
-      expect(screen.getAllByRole('checkbox', { checked: false })).toHaveLength(4);
+      expect(JSON.parse(global.localStorage.getItem('favorite_songs'))).toHaveLength(0);
 
       userEvent.click(screen.getByTestId('checkbox-music-12'));
       await waitFor(
@@ -64,8 +63,7 @@ describe('10 - Faça a requisição para recuperar as músicas favoritas e atual
         { timeout: 3000 }
       );
 
-      expect(screen.queryAllByRole('checkbox', { checked: true })).toHaveLength(1);
-      expect(screen.queryAllByRole('checkbox', { checked: false })).toHaveLength(3);
+      expect(JSON.parse(global.localStorage.getItem('favorite_songs'))).toHaveLength(1);
 
       userEvent.click(screen.getByTestId('checkbox-music-31'));
       await waitFor(
@@ -73,8 +71,7 @@ describe('10 - Faça a requisição para recuperar as músicas favoritas e atual
         { timeout: 3000 }
       );
 
-      expect(screen.queryAllByRole('checkbox', { checked: true })).toHaveLength(2);
-      expect(screen.queryAllByRole('checkbox', { checked: false })).toHaveLength(2);
+      expect(JSON.parse(global.localStorage.getItem('favorite_songs'))).toHaveLength(2);
 
     });
 });

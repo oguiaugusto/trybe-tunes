@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const IconBtn = styled.div`
+  background: none;
 
   svg {
     transition-duration: 100ms;

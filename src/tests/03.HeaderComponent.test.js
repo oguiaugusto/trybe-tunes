@@ -99,14 +99,14 @@ describe('3 - Crie um componente de cabeçalho', () => {
     async () => {
       renderPath("/search");
 
-      expect(screen.getByText('Carregando...')).toBeInTheDocument();
+      expect(screen.queryByTestId('loader')).toBeInTheDocument();
       
       await waitForElementToBeRemoved(
-        () => screen.getAllByText('Carregando...'),
+        () => screen.getAllByTestId('loader'),
         { timeout: 3000 },
       );
 
-      expect(screen.queryAllByText("Carregando...")).toHaveLength(0);
+      expect(screen.queryAllByTestId('loader')).toHaveLength(0);
     });
 
   it('Será validado se o nome da pessoa usuária está presente na tela após o retorno da API',
@@ -114,7 +114,7 @@ describe('3 - Crie um componente de cabeçalho', () => {
       renderPath("/search");
 
       await waitForElementToBeRemoved(
-        () => screen.getAllByText('Carregando...'),
+        () => screen.getAllByTestId('loader'),
         { timeout: 3000 },
       );
 

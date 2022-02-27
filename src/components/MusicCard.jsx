@@ -46,7 +46,7 @@ function MusicCard({ song, updateSongs, favoriteCard }) {
           ) : (
             <img
               className="album-cover"
-              src={ song.artworkUrl100.split('100x100').join('500x500') }
+              src={ song.artworkUrl100 }
               alt={ song.collectionName }
             />
           )

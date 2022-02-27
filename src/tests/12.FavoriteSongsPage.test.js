@@ -25,7 +25,7 @@ describe('12 - Crie a lista de músicas favoritas', () => {
       renderPath("/favorites");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -51,7 +51,7 @@ describe('12 - Crie a lista de músicas favoritas', () => {
       renderPath("/favorites");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
       expect(screen.getByText('Track Name 1')).toBeInTheDocument();
@@ -83,11 +83,11 @@ describe('12 - Crie a lista de músicas favoritas', () => {
       renderPath("/favorites");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
-      const checkboxes = screen.getAllByLabelText('Favorita');
+      const checkboxes = screen.getAllByTestId(/checkbox-music-/);
 
       expect(screen.getByText('Track Name 1')).toBeInTheDocument();
       expect(screen.getByText('Track Name 2')).toBeInTheDocument();
@@ -98,7 +98,7 @@ describe('12 - Crie a lista de músicas favoritas', () => {
       userEvent.click(checkboxes[0]);
 
       await waitForElementToBeRemoved(
-        () => screen.getAllByText('Carregando...'),
+        () => screen.getAllByTestId('loader'),
         { timeout: 3000 },
       );
 
@@ -106,6 +106,6 @@ describe('12 - Crie a lista de músicas favoritas', () => {
       expect(screen.getByText('Track Name 2')).toBeInTheDocument();
       expect(screen.getByText('Track Name 3')).toBeInTheDocument();
       expect(screen.getAllByTestId('audio-component')).toHaveLength(2);
-      expect(screen.getAllByLabelText('Favorita')).toHaveLength(2);
+      expect(screen.getAllByTestId(/checkbox-music-/)).toHaveLength(2);
     });
 });

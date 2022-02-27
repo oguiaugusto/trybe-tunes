@@ -21,7 +21,7 @@ describe('6 - Faça a requisição para pesquisar artistas', () => {
       renderPath("/search");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -29,7 +29,7 @@ describe('6 - Faça a requisição para pesquisar artistas', () => {
       userEvent.click(screen.getByTestId('search-artist-button'));
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -44,7 +44,7 @@ describe('6 - Faça a requisição para pesquisar artistas', () => {
     renderPath("/search");
 
     await waitFor(
-      () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+      () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
       { timeout: 3000 }
     );
 
@@ -54,11 +54,11 @@ describe('6 - Faça a requisição para pesquisar artistas', () => {
     userEvent.click(screen.getByTestId('search-artist-button'));
 
     await waitFor(
-      () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+      () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
       { timeout: 3000 }
     );
 
-    const searchMessage = screen.getByText(/Resultado de álbuns de: U2/i);
+    const searchMessage = screen.getByText(/Showing results for: U2/i);
 
     expect(searchMessage).toBeInTheDocument();
     expect(screen.getByTestId('search-artist-input').value).toBe('');
@@ -72,7 +72,7 @@ describe('6 - Faça a requisição para pesquisar artistas', () => {
       renderPath("/search");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -80,7 +80,7 @@ describe('6 - Faça a requisição para pesquisar artistas', () => {
       userEvent.click(screen.getByTestId('search-artist-button'));
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -97,7 +97,7 @@ describe('6 - Faça a requisição para pesquisar artistas', () => {
       renderPath("/search");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -105,11 +105,11 @@ describe('6 - Faça a requisição para pesquisar artistas', () => {
       userEvent.click(screen.getByTestId('search-artist-button'));
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
-      expect(screen.queryByText('Nenhum álbum foi encontrado')).toBeInTheDocument();
+      expect(screen.queryByText('No album was found')).toBeInTheDocument();
     });
 
   it('Será validado se existe um link para cada álbum listado que redirecione para a rota /album/:id',
@@ -120,7 +120,7 @@ describe('6 - Faça a requisição para pesquisar artistas', () => {
       renderPath("/search");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -128,7 +128,7 @@ describe('6 - Faça a requisição para pesquisar artistas', () => {
       userEvent.click(screen.getByTestId('search-artist-button'));
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 

@@ -58,7 +58,7 @@ describe('7 - Crie a lista de músicas do álbum selecionado', () => {
     renderPath("/album/12");
 
     await waitFor(
-      () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+      () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
       { timeout: 3000 }
     );
 

@@ -24,7 +24,7 @@ describe('8 - Crie o mecanismo para adicionar músicas na lista de músicas favo
       renderPath("/album/123");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -45,13 +45,13 @@ describe('8 - Crie o mecanismo para adicionar músicas na lista de músicas favo
       renderPath("/album/123");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
       userEvent.click(screen.getByTestId('checkbox-music-12'));
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
@@ -68,19 +68,19 @@ describe('8 - Crie o mecanismo para adicionar músicas na lista de músicas favo
       renderPath("/album/123");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
       userEvent.click(screen.getByTestId('checkbox-music-12'));
-      expect(screen.getByText("Carregando...")).toBeInTheDocument();
+      expect(screen.getByTestId('loader')).toBeInTheDocument();
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
-      expect(screen.queryByText("Carregando...")).not.toBeInTheDocument();
+      expect(screen.queryByTestId('loader')).not.toBeInTheDocument();
     });
 
   it('Será validado se o número de checkboxes marcados como checked aumenta quando um checkbox é clicado',
@@ -93,30 +93,27 @@ describe('8 - Crie o mecanismo para adicionar músicas na lista de músicas favo
       renderPath("/album/123");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
-      expect(screen.queryAllByRole('checkbox', { checked: true })).toHaveLength(0);
-      expect(screen.getAllByRole('checkbox', { checked: false })).toHaveLength(4);
+      expect(JSON.parse(global.localStorage.getItem('favorite_songs'))).toHaveLength(0);
 
       userEvent.click(screen.getByTestId('checkbox-music-12'));
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
-      expect(screen.queryAllByRole('checkbox', { checked: true })).toHaveLength(1);
-      expect(screen.queryAllByRole('checkbox', { checked: false })).toHaveLength(3);
+      // expect(JSON.parse(global.localStorage.getItem('favorite_songs'))).toHaveLength(1);
 
       userEvent.click(screen.getByTestId('checkbox-music-31'));
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
 
-      expect(screen.queryAllByRole('checkbox', { checked: true })).toHaveLength(2);
-      expect(screen.queryAllByRole('checkbox', { checked: false })).toHaveLength(2);
+      expect(JSON.parse(global.localStorage.getItem('favorite_songs'))).toHaveLength(2);
 
     });
 });

@@ -84,18 +84,18 @@ describe('2 - Crie um formulário para identificação', () => {
       renderPath("/");
 
       await waitFor(
-        () => expect(screen.queryAllByText('Carregando...')).toHaveLength(0),
+        () => expect(screen.queryAllByTestId('loader')).toHaveLength(0),
         { timeout: 3000 }
       );
   
       userEvent.type(screen.getByTestId('login-name-input'), 'Name');
       userEvent.click(screen.getByTestId('login-submit-button'));
   
-      const loadingElement = screen.getByText('Carregando...');
+      const loadingElement = screen.queryByTestId('loader');
       expect(loadingElement).toBeInTheDocument();
   
       await waitForElementToBeRemoved(
-        () => screen.getAllByText('Carregando...'),
+        () => screen.getAllByTestId('loader'),
         { timeout: 3500 },
       );
       expect(loadingElement).not.toBeInTheDocument();
