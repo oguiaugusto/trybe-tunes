@@ -1,0 +1,15 @@
+{
+  "short_name": "TrybeTunes",
+  "name": "Trybe Tunes",
+  "icons": [
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "37x37"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
