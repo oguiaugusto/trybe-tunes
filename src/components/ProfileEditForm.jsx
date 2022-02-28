@@ -60,7 +60,7 @@ function ProfileEditForm({
         <div className="d-flex flex-column">
           <Button
             data-testid="edit-button-save"
-            variant="outline-light"
+            variant="light"
             disabled={ disabledBtn() }
             onClick={ onSaveClick }
           >

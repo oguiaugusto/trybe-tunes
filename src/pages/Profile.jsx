@@ -35,7 +35,7 @@ function Profile() {
           />
         </div>
         <Button
-          variant="outline-light"
+          variant="light"
           className="me-2"
           onClick={ () => history.push('/profile/edit') }
         >

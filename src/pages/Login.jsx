@@ -54,7 +54,7 @@ function Login() {
                 />
               </Form.Group>
               <Button
-                variant="outline-light"
+                variant="light"
                 data-testid="login-submit-button"
                 className="mt-1"
                 type="button"
