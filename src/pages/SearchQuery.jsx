@@ -18,7 +18,7 @@ function SearchQuery() {
   const [resultsFor, setResultsFor] = useState('');
   const [albums, setAlbums] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [haveResults, setHaveResults] = useState(false);
+  const [hasResults, setHasResults] = useState(false);
 
   useEffect(() => { setArtistName(query); setResultsFor(query); }, [query]);
 
@@ -28,11 +28,12 @@ function SearchQuery() {
       searchAlbumsAPI(resultsFor).then((r) => {
         setAlbums(r);
         setLoading(false);
-        setHaveResults(true);
         setArtistName('');
       });
     }
   }, [resultsFor]);
+
+  useEffect(() => setHasResults(true), [albums]);
 
   const searchArtist = (e) => {
     if (!e.key || e.key === 'Enter') {
@@ -67,7 +68,7 @@ function SearchQuery() {
   );
 
   const renderResults = () => {
-    if (haveResults) {
+    if (hasResults) {
       return (
         <div className="search-results">
           <p className="text-center m-0">
