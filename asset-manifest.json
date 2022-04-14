@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/trybe-tunes/static/css/main.258323ca.chunk.css",
-    "main.js": "/trybe-tunes/static/js/main.957abca2.chunk.js",
-    "main.js.map": "/trybe-tunes/static/js/main.957abca2.chunk.js.map",
+    "main.js": "/trybe-tunes/static/js/main.f85caac1.chunk.js",
+    "main.js.map": "/trybe-tunes/static/js/main.f85caac1.chunk.js.map",
     "runtime-main.js": "/trybe-tunes/static/js/runtime-main.8eb3d787.js",
     "runtime-main.js.map": "/trybe-tunes/static/js/runtime-main.8eb3d787.js.map",
     "static/css/2.d8cb5cde.chunk.css": "/trybe-tunes/static/css/2.d8cb5cde.chunk.css",
-    "static/js/2.f2e962ec.chunk.js": "/trybe-tunes/static/js/2.f2e962ec.chunk.js",
-    "static/js/2.f2e962ec.chunk.js.map": "/trybe-tunes/static/js/2.f2e962ec.chunk.js.map",
+    "static/js/2.149eadff.chunk.js": "/trybe-tunes/static/js/2.149eadff.chunk.js",
+    "static/js/2.149eadff.chunk.js.map": "/trybe-tunes/static/js/2.149eadff.chunk.js.map",
     "index.html": "/trybe-tunes/index.html",
     "static/css/2.d8cb5cde.chunk.css.map": "/trybe-tunes/static/css/2.d8cb5cde.chunk.css.map",
     "static/css/main.258323ca.chunk.css.map": "/trybe-tunes/static/css/main.258323ca.chunk.css.map",
-    "static/js/2.f2e962ec.chunk.js.LICENSE.txt": "/trybe-tunes/static/js/2.f2e962ec.chunk.js.LICENSE.txt",
+    "static/js/2.149eadff.chunk.js.LICENSE.txt": "/trybe-tunes/static/js/2.149eadff.chunk.js.LICENSE.txt",
     "static/media/userDefaultImg.a6143582.png": "/trybe-tunes/static/media/userDefaultImg.a6143582.png"
   },
   "entrypoints": [
     "static/js/runtime-main.8eb3d787.js",
     "static/css/2.d8cb5cde.chunk.css",
-    "static/js/2.f2e962ec.chunk.js",
+    "static/js/2.149eadff.chunk.js",
     "static/css/main.258323ca.chunk.css",
-    "static/js/main.957abca2.chunk.js"
+    "static/js/main.f85caac1.chunk.js"
   ]
 }
