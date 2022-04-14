@@ -1,13 +1,27 @@
+const axios = require('axios');
+
+const headers = new Headers();
+
+headers.append('Content-Type', 'application/json');
+headers.append('Accept', 'application/json');
+headers.append('Access-Control-Allow-Origin', '*');
+headers.append('Access-Control-Allow-Credentials', 'true');
+headers.append('GET', 'POST', 'OPTIONS');
+
 const searchAlbumsAPI = async (artist) => {
-  const artistNameURL = encodeURI(artist).replaceAll('%20', '+');
+  const artistNameURL = encodeURI(
+    artist.normalize('NFD').replace(/[\u0300-\u036f]/g, ''),
+  ).replaceAll('%20', '+');
 
   const getAlbumsAPI = `https://itunes.apple.com/search?entity=album&term=${artistNameURL}&attribute=allArtistTerm`;
 
-  const APIResponse = await fetch(getAlbumsAPI);
+  const { data } = await axios.get(getAlbumsAPI, {
+    credentials: 'include',
+    method: 'GET',
+    headers,
+  });
 
-  const { results } = await APIResponse.json();
-
-  const response = results.map(
+  const response = data.results.map(
     ({
       artistId,
       artistName,
