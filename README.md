@@ -8,6 +8,8 @@ This project was made by [Guilherme Augusto](https://github.com/oguiaugusto) dur
 
 The point was to make a React application that would make it possible to search and play songs from the most variable bands and artists, create a list of favorite songs and edit the profile of the person logged in.
 
+### [Link to the website](https://oguiaugusto.github.io/trybe-tunes/#/)
+
 ---
 
 ## Used Technologies
